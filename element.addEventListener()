@@ -1,0 +1,17 @@
+Code example:
+
+
+const element = document.querySelector('a');
+element.addEventListener('click', event => event.preventDefault(), true);
+<a href="//google.com">Try clicking this link.</a>
+
+Expand snippet
+
+element.addEventListener() has multiple advantages:
+
+Allows you to register unlimited events handlers and remove them with element.removeEventListener().
+Has useCapture parameter, which indicates whether you'd like to handle event in its capturing or bubbling phase. See: Unable to understand useCapture attribute in addEventListener.
+Cares about semantics. Basically, it makes registering event handlers more explicit. For a beginner, a function call makes it obvious that something happens, whereas assigning event to some property of DOM element is at least not intuitive.
+Allows you to separate document structure (HTML) and logic (JavaScript). In tiny web applications it may not seem to matter, but it does matter with any bigger project. It's way much easier to maintain a project which separates structure and logic than a project which doesn't.
+Eliminates confusion with correct event names. Due to using inline event listeners or assigning event listeners to .onevent properties of DOM elements, lots of inexperienced JavaScript programmers thinks that the event name is for example onclick or onload. on is not a part of event name. Correct event names are click and load, and that's how event names are passed to .addEventListener().
+Works in almost all browser. If you still have to support IE <= 8, you can use a polyfill from MDN.
